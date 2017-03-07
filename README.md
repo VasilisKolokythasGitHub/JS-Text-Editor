@@ -1,2 +1,2 @@
-# JS-Text-Editor
+# JS Text Editor
 A simple text editor in javascript.
