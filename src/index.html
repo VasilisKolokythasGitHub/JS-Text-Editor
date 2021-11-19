@@ -1,112 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-
-<title>JS Editor</title>
-
-</head>
-<style>
-	.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 1vw 1vw;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 2vw;
-  font-family: SANS-SERIF;
-}
-.button:hover{
-	cursor: pointer;
-}
-
-#myText
-{
-	width:100%;
-	height:300px;
-	display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-input[type="file"] {
-    display: none;
-}
-.custom-file-upload
-{
- background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 1vw 1vw;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1.7vw;
-  font-family: SANS-SERIF;
-}
-.custom-file-upload:hover{
-	cursor: pointer;
-}
-
-.container{
-
-    text-align: center;
-
-}
-
-
-</style>
-<body>
-
-<div class="container">
-	<label for="fileLoader" class="custom-file-upload">
-		UPLOAD FILE
-	</label>
-	<input  type="file" id="fileLoader" />
-	<textarea id="myText" ></textarea>
-	<input class= "button" type="button" value="Save File" onclick="saveFile();"/>
-</div>
-</body>
-
-
-<script>
- document.getElementById("fileLoader").onchange = function()
- {
-	var file = document.getElementById("fileLoader").files[0];
-	var fileReader = new FileReader();
-	fileReader.onload = function(e)
-	{
-			var text = e.target.result;
-			document.getElementById("myText").value = text;
-	}
-	fileReader.readAsText(file,"UTF-8");
-};
-function saveFile()
-{
-	var saveText = document.getElementById("myText").value;
-	var textBLOB = new Blob([saveText],{type:"text/plain"});
-	var fileName = prompt("Enter file name");
-	var link = document.createElement("a");
-	link.download = fileName;
-	link.innerHTML = "Download " + fileName;
-	if(window.URL != null)
-	{
-		link.href = window.URL.createObjectURL(textBLOB);
-	}
-	else{
-		link.href = window.URL.createObjectURL(textBLOB);
-		link.onclick = destroy;
-		link.style.display = "none";
-		document.body.appendChild(link);
-	}
-	link.click();
-}
-	
-function destroy(e)
-{
-	document.body.removeChild(e.target);
-}
-	
- 
-</script>
+   <head>
+      <title>JS Editor</title>
+   </head>
+   <style>
+      .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 1vw 1vw;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 2vw;
+      font-family: SANS-SERIF;
+      }
+      .button:hover{
+      cursor: pointer;
+      }
+      #myText
+      {
+      width:100%;
+      height:300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      }
+      input[type="file"] {
+      display: none;
+      }
+      .custom-file-upload
+      {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 1vw 1vw;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1.7vw;
+      font-family: SANS-SERIF;
+      }
+      .custom-file-upload:hover{
+      cursor: pointer;
+      }
+      .container{
+      text-align: center;
+      }
+   </style>
+   <body>
+      <div class="container">
+         <label for="fileLoader" class="custom-file-upload">
+         UPLOAD FILE
+         </label>
+         <input  type="file" id="fileLoader" />
+         <textarea id="myText" ></textarea>
+         <input class= "button" type="button" value="Save File" onclick="saveFile();"/>
+      </div>
+   </body>
+   <script>
+      document.getElementById("fileLoader").onchange = function()
+      {
+      var file = document.getElementById("fileLoader").files[0];
+      var fileReader = new FileReader();
+      fileReader.onload = function(e)
+      {
+      		var text = e.target.result;
+      		document.getElementById("myText").value = text;
+      }
+      fileReader.readAsText(file,"UTF-8");
+      };
+      function saveFile()
+      {
+      var saveText = document.getElementById("myText").value;
+      var textBLOB = new Blob([saveText],{type:"text/plain"});
+      var fileName = prompt("Enter file name");
+      var link = document.createElement("a");
+      link.download = fileName;
+      link.innerHTML = "Download " + fileName;
+      if(window.URL != null)
+      {
+      	link.href = window.URL.createObjectURL(textBLOB);
+      }
+      else{
+      	link.href = window.URL.createObjectURL(textBLOB);
+      	link.onclick = destroy;
+      	link.style.display = "none";
+      	document.body.appendChild(link);
+      }
+      link.click();
+      }
+      
+      function destroy(e)
+      {
+      document.body.removeChild(e.target);
+      }
+      
+      
+   </script>
 </html>
